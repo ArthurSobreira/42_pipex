@@ -6,13 +6,13 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/10/24 19:41:41 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/10/24 20:03:37 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(void)
+void	test_access(void)
 {
 	const char	*file_name;
 
@@ -25,5 +25,11 @@ int	main(void)
 		printf("The file %s is writable\n", file_name);
 	if (access(file_name, X_OK) == 0)
 		printf("The file %s is executable\n", file_name);
+}
+
+int	main(void)
+{
+	// Run 'chmod xxx test.txt && ls -la test.txt && ./pipex'
+	test_access();
 	return (0);
 }
