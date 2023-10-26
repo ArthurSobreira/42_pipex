@@ -6,32 +6,48 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/10/26 10:40:35 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:50:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	test_execve(void)
+static int	test_execve(void)
 {
 	char	*argv[] = {"ls", "-lha", NULL};
 	char	*path;
+	pid_t	child_pid;
 
 	path = "/bin/ls";
-	if (execve(path, argv, NULL) < 0)
-		ft_printf("Unable to run '%s'\n", path);
+	
+	child_pid = fork(); // for the child process, pid == 0
+	if (child_pid == 0)
+	{
+		if (execve(path, argv, NULL) < 0)
+			ft_printf("Unable to run '%s'\n", path);
+		exit(0);
+	}
 	ft_printf("\n");
+	return (child_pid);
 }
 
-static void	test_execve_script(void)
+static int	test_execve_script(void)
 {
 	char	*argv[] = {"/bin/bash", "script.sh", NULL};
 	char	*path;
+	pid_t	child_pid;
 
 	path = "/bin/bash";
-	if (execve(path, argv, NULL) < 0)
-		ft_printf("Unable to run '%s'\n", path);
+
+	child_pid = fork(); // for the child process, pid == 0
+	if (child_pid == 0)
+	{
+		if (execve(path, argv, NULL) < 0)
+			ft_printf("Unable to run '%s'\n", path);
+		exit(0);
+	}
 	ft_printf("\n");
+	return (child_pid);
 }
 
 static void	test_access(void)
@@ -47,15 +63,19 @@ static void	test_access(void)
 		ft_printf("The file %s is writable\n", file_name);
 	if (access(file_name, X_OK) == 0)
 		ft_printf("The file %s is executable\n", file_name);
-	ft_printf("\n");
 }
 
 int	main(void)
 {
+	pid_t	pid;
+
+	pid = getpid();
+	ft_printf("main PID: %d\n", pid);
+	
 	// Run 'chmod xxx script.sh && ls -la script.sh && ./pipex'
 	test_access();
-	
-	test_execve();
-	test_execve_script();
+
+	pid = test_execve();
+    pid = test_execve_script();
 	return (0);
 }
