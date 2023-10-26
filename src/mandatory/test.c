@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/10/26 15:27:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:45:52 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	main(void)
 
 	test_execve();
 	wait(NULL);
-    test_execve_script();
+    
+	test_execve_script();
 	wait(NULL);
 
 	ft_printf("final PID: %d\n", pid);
