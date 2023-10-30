@@ -1,5 +1,5 @@
 NAME = pipex
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3 -g3 
 
 # Paths for libraries
 LIB_PATH = ./libs/libft
@@ -18,8 +18,7 @@ BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
-	main.c \
-	error.c \
+	test.c \
 
 OBJECTS = $(addprefix $(BIN_PATH), $(MANDATORY_SOURCES:%.c=%.o))
 
