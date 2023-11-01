@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/10/26 15:45:52 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:06:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,28 @@ static void	test_access(void)
 		ft_printf("The file %s is executable\n", file_name);
 }
 
+static void	test_dup2(void)
+{
+	int		fd;
+	int		fd2;
+	char	line[7];
+	char	line2[5];
+	int		bytes_read;
+
+	fd = open("Makefile", O_RDONLY);
+	bytes_read = read(fd, line, 7);
+	line[bytes_read] = '\0';
+	ft_printf("fd%d line: %s\n", fd, line);
+
+	fd2 = dup2(fd, 5);
+	bytes_read = read(fd2, line2, 5);
+	line2[bytes_read] = '\0';
+	ft_printf("fd%d line: %s\n\n", fd2, line2);
+	
+	close(fd);
+	close(fd2);
+}
+
 int	main(void)
 {
 	pid_t	pid;
@@ -75,11 +97,14 @@ int	main(void)
 	// Run 'chmod xxx script.sh && ls -la script.sh && ./pipex'
 	test_access();
 
+	// Execve tests
 	test_execve();
 	wait(NULL);
-    
 	test_execve_script();
 	wait(NULL);
+
+	// Dup2 tests
+	test_dup2();
 
 	ft_printf("final PID: %d\n", pid);
 	return (0);
