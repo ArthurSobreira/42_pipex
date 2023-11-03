@@ -1,5 +1,6 @@
 NAME = pipex
 CFLAGS = -Wall -Wextra -Werror -O3 -g3 
+VALGRIND_LOG = valgrind.log
 
 # Paths for libraries
 LIB_PATH = ./libs/libft
@@ -46,6 +47,17 @@ $(NAME): $(OBJECTS)
 $(BIN_PATH):
 	@mkdir -p $(BIN_PATH)
 
+valgrind: all
+	@valgrind --leak-check=full \
+	--show-reachable=yes \
+	--track-fds=yes \
+	--show-leak-kinds=all -s \
+	--trace-children=yes \
+	--track-origins=yes \
+	--log-file=$(VALGRIND_LOG) \
+	./$(NAME)
+	@cat $(VALGRIND_LOG) 
+
 clean:
 	@echo $(RED)[Removing Objects]$(COLOR_LIMITER)
 	@make clean -C $(LIB_PATH) --no-print-directory
@@ -55,6 +67,7 @@ fclean: clean
 	@echo $(RED)[Removing $(NAME) executable]$(COLOR_LIMITER)
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
+	@rm -rf $(VALGRIND_LOG)
 
 re: fclean
 	@make --no-print-directory
