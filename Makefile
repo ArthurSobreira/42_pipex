@@ -1,4 +1,5 @@
 NAME = pipex
+CC = clang # change to cc after
 CFLAGS = -Wall -Wextra -Werror -O3 -g3 
 VALGRIND_LOG = valgrind.log
 
@@ -19,7 +20,8 @@ BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
-	test.c \
+	main.c \
+	error.c 
 
 OBJECTS = $(addprefix $(BIN_PATH), $(MANDATORY_SOURCES:%.c=%.o))
 
