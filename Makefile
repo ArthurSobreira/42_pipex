@@ -19,8 +19,9 @@ BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
+	error.c \
 	main.c \
-	error.c 
+	start_files.c
 
 OBJECTS = $(addprefix $(BIN_PATH), $(MANDATORY_SOURCES:%.c=%.o))
 
