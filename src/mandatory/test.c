@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/03 15:20:26 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:19:06 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ static void	test_pipe(void)
 			read(fd[0], buffer, msg_size);
 			ft_printf("%s\n", buffer);
 		}
-		
 		close(fd[0]);
 		close(fd[1]);
 	}
@@ -128,7 +127,7 @@ int	main(void)
 	wait(NULL);
 	test_execve_script();
 	wait(NULL);
-
+	
 	// Dup2 tests
 	test_dup2();
 
