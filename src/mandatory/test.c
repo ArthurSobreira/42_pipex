@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:58:26 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/10/31 11:06:57 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:20:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,32 @@ static void	test_dup2(void)
 	close(fd2);
 }
 
+static void	test_pipe(void)
+{
+	char	*msg1 = "Hello, World 01";
+	char	*msg2 = "Hello, World 02";
+	char	*msg3 = "Hello, World 03\n";
+	int		msg_size = 16;
+	char	buffer[msg_size];
+	int		fd[2];
+	
+	if (pipe(fd) >= 0)
+	{
+		write(fd[1], msg1, msg_size);
+		write(fd[1], msg2, msg_size);
+		write(fd[1], msg3, msg_size);
+
+		for (int i = 0; i < 3; i++)
+		{
+			read(fd[0], buffer, msg_size);
+			ft_printf("%s\n", buffer);
+		}
+		
+		close(fd[0]);
+		close(fd[1]);
+	}
+}
+
 int	main(void)
 {
 	pid_t	pid;
@@ -105,6 +131,9 @@ int	main(void)
 
 	// Dup2 tests
 	test_dup2();
+
+	// Pipe tests
+	test_pipe();
 
 	ft_printf("final PID: %d\n", pid);
 	return (0);
