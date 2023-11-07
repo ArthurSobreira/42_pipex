@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/07 15:47:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:42:28 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	execute_commands(t_pipex *pipex)
 		if (index < pipex->commands - 1)
 			if (pipe(pipex->fd_pipe) < 0)
 				handle_error(2);
-		pipex->commands_array[index]->pid = fork();
-		if (pipex->commands_array[index]->pid < 0)
+		pipex->commands_array[index].pid = fork();
+		if (pipex->commands_array[index].pid < 0)
 			handle_error(3);
-		if (pipex->commands_array[index]->pid == 0)
-			exec_child_process(pipex, pipex->commands_array[index]);
+		if (pipex->commands_array[index].pid == 0)
+			exec_child_process(pipex, &pipex->commands_array[index]);
 		close(pipex->fd_pipe[1]);
 		index++;
 	}
