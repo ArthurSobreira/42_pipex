@@ -20,6 +20,7 @@ MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
 	error.c \
+	execute.c \
 	main.c \
 	start_files.c
 
@@ -54,10 +55,9 @@ valgrind: all
 	--show-reachable=yes \
 	--track-fds=yes \
 	--show-leak-kinds=all -s \
-	--trace-children=yes \
 	--track-origins=yes \
 	--log-file=$(VALGRIND_LOG) \
-	./$(NAME)
+	./$(NAME) infile teste teste outfile
 	@cat $(VALGRIND_LOG) 
 
 clean:
