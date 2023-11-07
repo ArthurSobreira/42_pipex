@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/06 11:56:29 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:51:56 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,38 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 
-typedef struct s_pipex
+# define ANY_CHILD -1
+
+typedef enum e_pros
 {
-	int		fd_input_file;
-	int		fd_output_file;
-	int		fd_pipe[2];
-}			t_pipex;
+	INITIAL,
+	FINAL,
+}		t_pros;
 
 typedef struct s_cmd
 {
+	pid_t	pid;
+	t_pros	pros;
 	char	*cmd;
 	char	**argv;
 	char	**envp;
 }			t_cmd;
 
-typedef enum e_bool
+typedef struct s_pipex
 {
-	FALSE,
-	TRUE
-}		t_bool;
+	int		fd_input_file;
+	int		fd_output_file;
+	int		fd_pipe[2];
+	size_t	commands;
+	t_cmd	**commands_array;
+}			t_pipex;
 
 void	start_io_files(t_pipex *pipex, char *argv[]);
 void	start_input_file(t_pipex *pipex, char *in_file);
 void	start_output_file(t_pipex *pipex, char *out_file);
+
+void	execute_commands(t_pipex *pipex);
+void	exec_child_process(t_pipex *pipex, t_cmd *command);
 
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code, char *file_name);
