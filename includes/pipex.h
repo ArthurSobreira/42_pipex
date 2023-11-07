@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/07 15:51:56 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:41:01 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_pipex
 	int		fd_output_file;
 	int		fd_pipe[2];
 	size_t	commands;
-	t_cmd	**commands_array;
+	t_cmd	*commands_array;
 }			t_pipex;
 
 void	start_io_files(t_pipex *pipex, char *argv[]);
