@@ -19,6 +19,7 @@ BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
+	commands.c \
 	error.c \
 	execute.c \
 	main.c \
