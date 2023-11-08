@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:39:24 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 10:41:21 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:20:42 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	start_io_files(t_pipex *pipex, char *argv[])
 	char	*out_file;
 
 	in_file = argv[1];
-	out_file = argv[4];
+	out_file = argv[pipex->commands + 2];
 	start_input_file(pipex, in_file);
 	start_output_file(pipex, out_file);
 }
