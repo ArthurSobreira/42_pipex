@@ -19,6 +19,7 @@ BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
 
 MANDATORY_SOURCES = \
+	clear.c \
 	commands.c \
 	error.c \
 	execute.c \
@@ -58,7 +59,7 @@ valgrind: all
 	--show-leak-kinds=all -s \
 	--track-origins=yes \
 	--log-file=$(VALGRIND_LOG) \
-	./$(NAME) infile teste teste outfile
+	./$(NAME) infile "cat" "grep teste" outfile
 	@cat $(VALGRIND_LOG) 
 
 clean:
