@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:12:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 12:21:54 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:28:30 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,4 @@ void	handle_file_error(short exit_code, char *file_name)
 	if (exit_code == 3)
 		ft_printf("\033[31;3mError, cannot open file '%s' :(\033[0m\n", file_name);
 	exit(exit_code);
-}
-
-void	clear_all(t_pipex *pipex, short exit_code)
-{
-	close(pipex->fd_input_file);
-	close(pipex->fd_output_file);
-	free(pipex->commands_array[1].argv);
-	free(pipex->commands_array);
-	handle_error(exit_code);
 }
