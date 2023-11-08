@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 15:40:04 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:32:17 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 
 char	*get_cmd_path(char *cmd_name, char *envp[])
 {
+	size_t	env_index;
+	size_t	path_index;
 	char	**split;
+	char	**split_path;
 	
 	if (*cmd_name == '\0')
 		handle_error(4);
-	(void)envp;
+	env_index = 0;
+	while ((envp[env_index]) && (ft_strncmp(envp[env_index], "PATH=", 5)))
+		env_index++;
+	
+	split_path = ft_split(envp[env_index] + 5, ':');
+	
+	path_index = 0;
+	while (split_path[path_index] != NULL)
+	{
+		ft_printf("%s/\n", split_path[path_index]);
+		path_index++;
+	}
+
 	split = ft_split(cmd_name, SPACE);
 	return (ft_strjoin("/usr/bin/", split[0]));
 }
