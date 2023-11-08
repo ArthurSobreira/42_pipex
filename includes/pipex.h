@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/07 16:41:01 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:47:41 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command);
 
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code, char *file_name);
+void	close_all(t_pipex *pipex, short exit_code);
 
 #endif
