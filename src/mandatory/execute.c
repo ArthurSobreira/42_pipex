@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/07 16:42:28 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:45:11 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command)
 {
 	short	read_pipe;
 	short	write_pipe;
-	
+
 	read_pipe = pipex->fd_pipe[0];
 	write_pipe = pipex->fd_pipe[1];
 	if (command->pros == INITIAL)
