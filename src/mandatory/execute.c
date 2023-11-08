@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 10:45:11 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:25:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	execute_commands(t_pipex *pipex)
 		close(pipex->fd_pipe[1]);
 		index++;
 	}
-	waitpid(ANY_CHILD, NULL, 0);
+	waitpid(ANY_CHILD, NULL, WNOHANG);
 	close(pipex->fd_pipe[0]);
 	close(pipex->fd_input_file);
 	close(pipex->fd_output_file);
@@ -54,9 +54,9 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command)
 	else if (command->pros == FINAL)
 	{
 		dup2(pipex->fd_output_file, STDOUT_FILENO);
+		close(write_pipe);
 		dup2(read_pipe, STDIN_FILENO);
 		close(read_pipe);
-		close(write_pipe);
 		execve(command->cmd, command->argv, command->envp);
 	}
 }
