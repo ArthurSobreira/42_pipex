@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 12:22:03 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:35:09 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@
 # include <sys/wait.h>
 
 # define ANY_CHILD -1
+# define SPACE 32
 
-typedef enum e_pros
+typedef enum e_proc
 {
 	INITIAL,
 	FINAL,
-}		t_pros;
+}		t_proc;
 
 typedef struct s_cmd
 {
 	pid_t	pid;
-	t_pros	pros_type;
+	t_proc	proc_type;
 	char	*cmd;
 	char	**argv;
 	char	**envp;
@@ -57,5 +58,6 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command);
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code, char *file_name);
 void	clear_all(t_pipex *pipex, short exit_code);
+void	free_split(char **split);
 
 #endif
