@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 11:25:57 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:10:30 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command)
 
 	read_pipe = pipex->fd_pipe[0];
 	write_pipe = pipex->fd_pipe[1];
-	if (command->pros == INITIAL)
+	if (command->pros_type == INITIAL)
 	{
 		dup2(pipex->fd_input_file, STDIN_FILENO);
 		close(read_pipe);
@@ -51,7 +51,7 @@ void	exec_child_process(t_pipex *pipex, t_cmd *command)
 		close(write_pipe);
 		execve(command->cmd, command->argv, command->envp);
 	}
-	else if (command->pros == FINAL)
+	else if (command->pros_type == FINAL)
 	{
 		dup2(pipex->fd_output_file, STDOUT_FILENO);
 		close(write_pipe);
