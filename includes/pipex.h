@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 19:44:39 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:38:51 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	start_input_file(t_pipex *pipex, char *in_file);
 void	start_output_file(t_pipex *pipex, char *out_file);
 
 void	get_commands(t_pipex *pipex, char *argv[], char *envp[]);
+char	*validate_path(char *cmd_name, char **split_path);
 char	*get_cmd_path(char *cmd_name, char *envp[]);
 char	*get_cmd_name(char *cmd_name);
 char	**get_arguments(char *argv);
@@ -65,5 +66,6 @@ void	handle_error(short exit_code);
 void	handle_file_error(short exit_code);
 void	clear_all(t_pipex *pipex, short exit_code);
 void	free_split(char **split);
+void	free_variables(char *var, char **split_var);
 
 #endif
