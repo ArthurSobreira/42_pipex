@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 14:09:20 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:28:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	execute_commands(t_pipex *pipex)
 			handle_error(3);
 		if (pipex->commands_array[index].pid == 0)
 			exec_child_process(pipex, &pipex->commands_array[index]);
+		free(pipex->commands_array[index].cmd);
+		if (pipex->commands_array[index].argv)
+			free_split(pipex->commands_array[index].argv);
 		close(pipex->fd_pipe[1]);
 		index++;
 	}
