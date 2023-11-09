@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:28:20 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/08 15:28:41 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:30:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ void	free_split(char **split)
 	}
 	free(split);
 }
-
