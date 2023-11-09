@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 16:34:09 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:46:26 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <sys/wait.h>
 
 # define ANY_CHILD -1
 # define SPACE 32
 # define TWO_POINTS 58
+# define CMD_NOT_FOUND 127
 
 typedef enum e_proc
 {
@@ -60,7 +62,7 @@ void	execute_commands(t_pipex *pipex);
 void	exec_child_process(t_pipex *pipex, t_cmd *command);
 
 void	handle_error(short exit_code);
-void	handle_file_error(short exit_code, char *file_name);
+void	handle_file_error(short exit_code);
 void	clear_all(t_pipex *pipex, short exit_code);
 void	free_split(char **split);
 
