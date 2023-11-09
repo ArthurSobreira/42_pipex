@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 16:46:26 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:44:39 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
+# define CMD_NOT_FOUND 127
 # define ANY_CHILD -1
 # define SPACE 32
 # define TWO_POINTS 58
-# define CMD_NOT_FOUND 127
 
 typedef enum e_proc
 {
