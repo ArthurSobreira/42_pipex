@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:28:20 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 16:30:26 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:39:34 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ void	free_split(char **split)
 		index++;
 	}
 	free(split);
+}
+
+void	free_variables(char *var, char **split_var)
+{
+	if (var != NULL)
+		free(var);
+	if (split_var != NULL)
+		free_split(split_var);
 }
