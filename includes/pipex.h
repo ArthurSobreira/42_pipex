@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 20:38:51 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:29:27 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef enum e_proc
 	FINAL,
 }		t_proc;
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE,
+}		t_bool;
+
 typedef struct s_cmd
 {
 	pid_t	pid;
@@ -47,6 +53,7 @@ typedef struct s_pipex
 	int		fd_pipe[2];
 	size_t	commands;
 	t_cmd	*commands_array;
+	t_bool	success;
 }			t_pipex;
 
 void	start_io_files(t_pipex *pipex, char *argv[]);
@@ -61,6 +68,8 @@ char	**get_arguments(char *argv);
 
 void	execute_commands(t_pipex *pipex);
 void	exec_child_process(t_pipex *pipex, t_cmd *command);
+void	initial_process(t_pipex *pipex, t_cmd *command);
+void	final_process(t_pipex *pipex, t_cmd *command);
 
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code);
