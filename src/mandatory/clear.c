@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:28:20 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 20:39:34 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:56:59 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	clear_all(t_pipex *pipex, short exit_code)
 	close(pipex->fd_input_file);
 	close(pipex->fd_output_file);
 	free(pipex->commands_array);
-	handle_error(exit_code);
+	if ((pipex->success == TRUE) && (exit_code == 0))
+		handle_error(0);
+	else
+		handle_error(exit_code);
 }
 
 void	free_split(char **split)
