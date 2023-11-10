@@ -1,4 +1,5 @@
 NAME = pipex
+NAME_BONUS = pipex_bonus
 CFLAGS = -Wall -Wextra -Werror -O3 -g3 
 VALGRIND_LOG = valgrind.log
 
@@ -17,6 +18,7 @@ COLOR_LIMITER = "\033[0m"
 HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
+BONUS_SOURCES_PATH = ./src/bonus/
 
 MANDATORY_SOURCES = \
 	clear.c \
@@ -26,7 +28,16 @@ MANDATORY_SOURCES = \
 	main.c \
 	start_files.c
 
+BONUS_SOURCES = \
+	clear_bonus.c \
+	commands_bonus.c \
+	error_bonus.c \
+	execute_bonus.c \
+	main_bonus.c \
+	start_files_bonus.c
+
 OBJECTS = $(addprefix $(BIN_PATH), $(MANDATORY_SOURCES:%.c=%.o))
+BONUS_OBJECTS = $(addprefix $(BIN_PATH), $(BONUS_SOURCES:%.c=%.o))
 
 all: libft $(BIN_PATH) $(NAME)
 
@@ -44,9 +55,23 @@ $(BIN_PATH)%.o: $(MANDATORY_SOURCES_PATH)%.c
 
 $(NAME): $(OBJECTS)
 	@echo $(CYAN)" ----------------------------------------------"$(COLOR_LIMITER)
-	@echo $(CYAN)"| Pipex executable was created successfully!! |"$(COLOR_LIMITER)
+	@echo $(CYAN)"| PIPEX executable was created successfully!! |"$(COLOR_LIMITER)
 	@echo $(CYAN)"----------------------------------------------"$(COLOR_LIMITER)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -L $(LIB_PATH) -lft
+	@echo " "
+
+bonus: libft $(BIN_PATH) $(NAME_BONUS)
+
+$(BIN_PATH)%.o: $(BONUS_SOURCES_PATH)%.c
+	@echo $(GREEN)[Compiling]$(COLOR_LIMITER) $(WHITE)$(notdir $(<))...$(COLOR_LIMITER)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER_PATH)
+	@echo " "
+
+$(NAME_BONUS): $(BONUS_OBJECTS)
+	@echo $(CYAN)" ----------------------------------------------------"$(COLOR_LIMITER)
+	@echo $(CYAN)"| PIPEX_BONUS executable was created successfully!! |"$(COLOR_LIMITER)
+	@echo $(CYAN)"----------------------------------------------------"$(COLOR_LIMITER)
+	@$(CC) $(CFLAGS) -o $(NAME_BONUS) $(BONUS_OBJECTS) -L $(LIB_PATH) -lft
 	@echo " "
 
 $(BIN_PATH):
