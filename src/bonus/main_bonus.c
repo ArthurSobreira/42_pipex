@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:08:19 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 12:14:36 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:35:25 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	pipex;
 
-	if (argc != 5)
+	if (argc < 5)
 		handle_error(1);
 	else
 	{

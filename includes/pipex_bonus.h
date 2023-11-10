@@ -6,14 +6,14 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:33:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 11:53:02 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:40:50 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include "../../libs/libft/libft.h"
+# include "../libs/libft/libft.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -28,6 +28,7 @@
 typedef enum e_proc
 {
 	INITIAL,
+	INTERMEDIATE,
 	FINAL,
 }		t_proc;
 
@@ -69,6 +70,7 @@ char	**get_arguments(char *argv);
 void	execute_commands(t_pipex *pipex);
 void	exec_child_process(t_pipex *pipex, t_cmd *command);
 void	initial_process(t_pipex *pipex, t_cmd *command);
+void	intermediate_process(t_pipex *pipex, t_cmd *command);
 void	final_process(t_pipex *pipex, t_cmd *command);
 
 void	handle_error(short exit_code);

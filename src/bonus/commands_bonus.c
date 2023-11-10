@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 12:14:44 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:22:30 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ void	get_commands(t_pipex *pipex, char *argv[], char *envp[])
 	{
 		pipex->commands_array[index].pid = -1;
 		pipex->commands_array[index].cmd = get_cmd_path(argv[cmd_index], envp);
-		if (!pipex->commands_array[index].cmd)
-			pipex->success = FALSE;
+		// if (ft_strchr(pipex->commands_array[index].cmd, '/'))
+		// 	pipex->success = FALSE;
 		pipex->commands_array[index].argv = get_arguments(argv[cmd_index]);
 		pipex->commands_array[index].envp = envp;
 		if (index == 0)
 			pipex->commands_array[index].proc_type = INITIAL;
 		else if (index == (pipex->commands - 1))
 			pipex->commands_array[index].proc_type = FINAL;
+		else
+			pipex->commands_array[index].proc_type = INTERMEDIATE;
 		cmd_index++;
 		index++;
 	}
@@ -53,6 +55,8 @@ char	*get_cmd_path(char *cmd_name, char *envp[])
 		env_index++;
 	split_path = ft_split(envp[env_index] + 5, TWO_POINTS);
 	with_path = validate_path(cmd, split_path);
+	if (!with_path)
+		return (cmd);
 	return (with_path);
 }
 
