@@ -102,4 +102,7 @@ fclean: clean
 re: fclean
 	@make --no-print-directory
 
-.PHONY: all clean fclean re libft
+re_bonus: fclean
+	@make bonus --no-print-directory
+
+.PHONY: all clean fclean re libft bonus re_bonus valgrind
