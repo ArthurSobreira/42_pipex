@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:08:19 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/09 17:10:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:30:31 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	main(int argc, char *argv[], char *envp[])
 	else
 	{
 		pipex.commands = argc - 3;
+		pipex.success = TRUE;
 		start_io_files(&pipex, argv);
 		get_commands(&pipex, argv, envp);
 		execute_commands(&pipex);
-		clear_all(&pipex, 0);
+		if (pipex.success == TRUE)
+			clear_all(&pipex, 0);
 	}
 	return (0);
 }
