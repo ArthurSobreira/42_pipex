@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 11:27:47 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/10 13:33:42 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void	initial_process(t_pipex *pipex, t_cmd *command)
 	close(read_pipe);
 	dup2(write_pipe, STDOUT_FILENO);
 	close(write_pipe);
-	if (command->cmd == NULL)
-		handle_error(CMD_NOT_FOUND);
-	else if (execve(command->cmd, command->argv, command->envp) < 0)
+	if (execve(command->cmd, command->argv, command->envp) < 0)
 		handle_error(CMD_NOT_FOUND);
 }
 
@@ -73,8 +71,6 @@ void	final_process(t_pipex *pipex, t_cmd *command)
 	close(write_pipe);
 	dup2(read_pipe, STDIN_FILENO);
 	close(read_pipe);
-	if (command->cmd == NULL)
-		handle_error(CMD_NOT_FOUND);
-	else if (execve(command->cmd, command->argv, command->envp) < 0)
+	if (execve(command->cmd, command->argv, command->envp) < 0)
 		handle_error(CMD_NOT_FOUND);
 }
