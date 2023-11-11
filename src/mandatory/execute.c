@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 13:33:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:46:40 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ void	execute_commands(t_pipex *pipex)
 			handle_error(3);
 		if (pipex->commands_array[index].pid == 0)
 			exec_child_process(pipex, &pipex->commands_array[index]);
+		else
+		{
+			waitpid(pipex->commands_array[index].pid, NULL, 0);
+			close(pipex->fd_pipe[1]);
+		}
 		free(pipex->commands_array[index].cmd);
 		if (pipex->commands_array[index].argv)
 			free_split(pipex->commands_array[index].argv);
-		close(pipex->fd_pipe[1]);
 		index++;
 	}
-	waitpid(ANY_CHILD, NULL, WNOHANG);
 	close(pipex->fd_pipe[0]);
 }
 
@@ -57,7 +60,13 @@ void	initial_process(t_pipex *pipex, t_cmd *command)
 	dup2(write_pipe, STDOUT_FILENO);
 	close(write_pipe);
 	if (execve(command->cmd, command->argv, command->envp) < 0)
-		handle_error(CMD_NOT_FOUND);
+	{
+		printf("cmd: %s\n", command->cmd);
+		free(command->cmd);
+		if (command->argv)
+			free_split(command->argv);
+		clear_all(pipex, CMD_NOT_FOUND);
+	}
 }
 
 void	final_process(t_pipex *pipex, t_cmd *command)
@@ -72,5 +81,10 @@ void	final_process(t_pipex *pipex, t_cmd *command)
 	dup2(read_pipe, STDIN_FILENO);
 	close(read_pipe);
 	if (execve(command->cmd, command->argv, command->envp) < 0)
-		handle_error(CMD_NOT_FOUND);
+	{
+		free(command->cmd);
+		if (command->argv)
+			free_split(command->argv);
+		clear_all(pipex, CMD_NOT_FOUND);
+	}
 }
