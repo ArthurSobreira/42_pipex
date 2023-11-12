@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:08:19 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 13:35:25 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:45:34 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char *argv[], char *envp[])
 		execute_commands(&pipex);
 		if (pipex.success == TRUE)
 			clear_all(&pipex, 0);
+		clear_all(&pipex, -1);
 	}
 	return (0);
 }
