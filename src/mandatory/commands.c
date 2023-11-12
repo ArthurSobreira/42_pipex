@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 10:50:44 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:13:51 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_commands(t_pipex *pipex, char *argv[], char *envp[])
 	{
 		pipex->commands_array[index].pid = -1;
 		pipex->commands_array[index].cmd = get_cmd_path(argv[cmd_index], envp);
-		if (!pipex->commands_array[index].cmd)
+		if (!ft_strchr(pipex->commands_array[index].cmd, '/'))
 			pipex->success = FALSE;
 		pipex->commands_array[index].argv = get_arguments(argv[cmd_index]);
 		pipex->commands_array[index].envp = envp;
@@ -53,6 +53,8 @@ char	*get_cmd_path(char *cmd_name, char *envp[])
 		env_index++;
 	split_path = ft_split(envp[env_index] + 5, TWO_POINTS);
 	with_path = validate_path(cmd, split_path);
+	if (!with_path)
+		return (cmd);
 	return (with_path);
 }
 
@@ -107,6 +109,6 @@ char	*validate_path(char *cmd_name, char **split_path)
 		free(with_path);
 		index++;
 	}
-	free_variables(cmd_name, split_path);
+	free_variables(NULL, split_path);
 	return (NULL);
 }
