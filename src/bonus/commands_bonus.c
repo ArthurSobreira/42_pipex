@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 11:38:07 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 14:50:23 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_commands(t_pipex *pipex, char *argv[], char *envp[])
 	if (!pipex->commands_array)
 		handle_error(4);
 	index = 0;
-	cmd_index = 2;
+	cmd_index = pipex->cmd_index;
 	while (index < pipex->commands)
 	{
 		pipex->commands_array[index].pid = -1;
