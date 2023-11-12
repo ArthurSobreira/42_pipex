@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:28:20 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 12:14:56 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:35:09 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ void	clear_all(t_pipex *pipex, short exit_code)
 		handle_error(0);
 	else
 		handle_error(exit_code);
+}
+
+void	clear_invalid_command(t_pipex *pipex, size_t cmd_pos)
+{
+	while (cmd_pos < pipex->commands)
+	{
+		free(pipex->commands_array[cmd_pos].cmd);
+		if (pipex->commands_array[cmd_pos].argv)
+			free_split(pipex->commands_array[cmd_pos].argv);
+		cmd_pos++;
+	}
+	clear_all(pipex, CMD_NOT_FOUND);
 }
 
 void	free_split(char **split)
