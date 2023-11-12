@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/11 16:46:40 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:38:05 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	execute_commands(t_pipex *pipex)
 		if (pipex->commands_array[index].pid < 0)
 			handle_error(3);
 		if (pipex->commands_array[index].pid == 0)
-			exec_child_process(pipex, &pipex->commands_array[index]);
+			exec_child_process(pipex, &pipex->commands_array[index], index);
 		else
 		{
 			waitpid(pipex->commands_array[index].pid, NULL, 0);
@@ -40,15 +40,15 @@ void	execute_commands(t_pipex *pipex)
 	close(pipex->fd_pipe[0]);
 }
 
-void	exec_child_process(t_pipex *pipex, t_cmd *command)
+void	exec_child_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos)
 {
 	if (command->proc_type == INITIAL)
-		initial_process(pipex, command);
+		initial_process(pipex, command, cmd_pos);
 	else if (command->proc_type == FINAL)
-		final_process(pipex, command);
+		final_process(pipex, command, cmd_pos);
 }
 
-void	initial_process(t_pipex *pipex, t_cmd *command)
+void	initial_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos)
 {
 	short	read_pipe;
 	short	write_pipe;
@@ -60,16 +60,10 @@ void	initial_process(t_pipex *pipex, t_cmd *command)
 	dup2(write_pipe, STDOUT_FILENO);
 	close(write_pipe);
 	if (execve(command->cmd, command->argv, command->envp) < 0)
-	{
-		printf("cmd: %s\n", command->cmd);
-		free(command->cmd);
-		if (command->argv)
-			free_split(command->argv);
-		clear_all(pipex, CMD_NOT_FOUND);
-	}
+		clear_invalid_command(pipex, cmd_pos);
 }
 
-void	final_process(t_pipex *pipex, t_cmd *command)
+void	final_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos)
 {
 	short	read_pipe;
 	short	write_pipe;
@@ -81,10 +75,5 @@ void	final_process(t_pipex *pipex, t_cmd *command)
 	dup2(read_pipe, STDIN_FILENO);
 	close(read_pipe);
 	if (execve(command->cmd, command->argv, command->envp) < 0)
-	{
-		free(command->cmd);
-		if (command->argv)
-			free_split(command->argv);
-		clear_all(pipex, CMD_NOT_FOUND);
-	}
+		clear_invalid_command(pipex, cmd_pos);
 }
