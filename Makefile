@@ -33,6 +33,7 @@ BONUS_SOURCES = \
 	commands_bonus.c \
 	error_bonus.c \
 	execute_bonus.c \
+	here_doc_bonus.c \
 	main_bonus.c \
 	start_files_bonus.c
 
