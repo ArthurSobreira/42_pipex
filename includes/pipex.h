@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 00:39:48 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 10:49:53 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/wait.h>
 
 # define CMD_NOT_FOUND 127
-# define ANY_CHILD -1
 # define SPACE 32
 # define TWO_POINTS 58
 
