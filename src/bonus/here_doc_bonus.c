@@ -22,7 +22,7 @@ void	here_doc(t_pipex *pipex)
 		handle_error(2);
 	while (1)
 	{
-		ft_putstr_fd("pipex: here_doc> ", STDOUT_FILENO);
+		ft_putstr_fd("pipex: \033[34;3mhere_doc\033[0m> ", STDOUT_FILENO);
 		line = get_next_line(STDIN_FILENO);
 		if (!ft_strncmp(line, pipex->limiter, ft_strlen(pipex->limiter)))
 		{
