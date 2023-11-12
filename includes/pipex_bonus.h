@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:33:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 11:42:15 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:05:43 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/wait.h>
 
 # define CMD_NOT_FOUND 127
-# define ANY_CHILD -1
 # define SPACE 32
 # define TWO_POINTS 58
 
@@ -52,14 +51,18 @@ typedef struct s_pipex
 	int		fd_input_file;
 	int		fd_output_file;
 	int		fd_pipe[2];
+	char	*limiter;
 	size_t	commands;
+	size_t	cmd_index;
 	t_cmd	*commands_array;
+	t_bool	has_heredoc;
 	t_bool	success;
 }			t_pipex;
 
 void	start_io_files(t_pipex *pipex, char *argv[]);
 void	start_input_file(t_pipex *pipex, char *in_file);
 void	start_output_file(t_pipex *pipex, char *out_file);
+void	here_doc(t_pipex *pipex);
 
 void	get_commands(t_pipex *pipex, char *argv[], char *envp[]);
 char	*validate_path(char *cmd_name, char **split_path);
@@ -79,5 +82,6 @@ void	clear_all(t_pipex *pipex, short exit_code);
 void	clear_invalid_command(t_pipex *pipex, size_t cmd_pos);
 void	free_split(char **split);
 void	free_variables(char *var, char **split_var);
+
 
 #endif
