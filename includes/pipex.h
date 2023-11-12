@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/10 11:54:58 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 00:39:48 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ char	*get_cmd_name(char *cmd_name);
 char	**get_arguments(char *argv);
 
 void	execute_commands(t_pipex *pipex);
-void	exec_child_process(t_pipex *pipex, t_cmd *command);
-void	initial_process(t_pipex *pipex, t_cmd *command);
-void	final_process(t_pipex *pipex, t_cmd *command);
+void	exec_child_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
+void	initial_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
+void	final_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
 
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code);
 void	clear_all(t_pipex *pipex, short exit_code);
+void	clear_invalid_command(t_pipex *pipex, size_t cmd_pos);
 void	free_split(char **split);
 void	free_variables(char *var, char **split_var);
 
