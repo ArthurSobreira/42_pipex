@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:08:19 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 11:45:34 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:38:57 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc < 5)
 		handle_error(1);
+	else if (!ft_strncmp(argv[1], "here_doc", 8) && (argc < 6))
+		handle_error(5);
 	else
 	{
 		pipex.commands = argc - 3;
