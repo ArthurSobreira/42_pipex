@@ -6,11 +6,11 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:12:37 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 12:41:47 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:31:20 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	handle_error(short exit_code)
 {
