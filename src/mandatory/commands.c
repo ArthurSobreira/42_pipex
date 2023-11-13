@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 00:17:09 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:56:43 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*get_cmd_name(char *cmd_name)
 {
 	size_t	len_cmd;
 
+	if (cmd_name[0] == NULL)
+		return (ft_substr("cmd", 0, 3));
 	len_cmd = 0;
 	while ((*cmd_name != '\0') && (*cmd_name == SPACE))
 		cmd_name++;
