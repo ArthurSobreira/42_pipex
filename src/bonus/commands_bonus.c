@@ -6,11 +6,11 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:07:01 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 14:50:23 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:31:13 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	get_commands(t_pipex *pipex, char *argv[], char *envp[])
 {
@@ -32,10 +32,10 @@ void	get_commands(t_pipex *pipex, char *argv[], char *envp[])
 		pipex->commands_array[index].envp = envp;
 		if (index == 0)
 			pipex->commands_array[index].proc_type = INITIAL;
-		else if (index == (pipex->commands - 1))
-			pipex->commands_array[index].proc_type = FINAL;
-		else
+		else if (index < (pipex->commands - 1))
 			pipex->commands_array[index].proc_type = INTERMEDIATE;
+		else
+			pipex->commands_array[index].proc_type = FINAL;
 		cmd_index++;
 		index++;
 	}
@@ -64,6 +64,8 @@ char	*get_cmd_name(char *cmd_name)
 {
 	size_t	len_cmd;
 
+	if (!cmd_name[0])
+		return (ft_substr("cmd", 0, 3));
 	len_cmd = 0;
 	while ((*cmd_name != '\0') && (*cmd_name == SPACE))
 		cmd_name++;
