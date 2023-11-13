@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 11:29:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:24:06 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,25 @@ typedef struct s_pipex
 	t_bool	success;
 }			t_pipex;
 
+// Start Functions
 void	start_io_files(t_pipex *pipex, char *argv[]);
 void	start_input_file(t_pipex *pipex, char *in_file);
 void	start_output_file(t_pipex *pipex, char *out_file);
 
+// Commands Functions
 void	get_commands(t_pipex *pipex, char *argv[], char *envp[]);
 char	*validate_path(char *cmd_name, char **split_path);
 char	*get_cmd_path(char *cmd_name, char *envp[]);
 char	*get_cmd_name(char *cmd_name);
 char	**get_arguments(char *argv);
 
+// Execute Functions
 void	execute_commands(t_pipex *pipex);
 void	exec_child_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
 void	initial_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
 void	final_process(t_pipex *pipex, t_cmd *command, size_t cmd_pos);
 
+// Utils Functions
 void	handle_error(short exit_code);
 void	handle_file_error(short exit_code);
 void	clear_all(t_pipex *pipex, short exit_code);
