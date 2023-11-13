@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 11:32:51 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/09/25 12:14:47 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:54:39 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static char	*ft_get_buffer_rest(char *total_buffer);
 
 char	*get_next_line(int fd)
 {
-	static char	*total_buffer[2048];
+	static char	*total_buffer;
 	char		*current_line;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
+		if (fd < 0)
+			free(total_buffer);
 		return (NULL);
 	}
-	total_buffer[fd] = ft_fill_buffer(fd, total_buffer[fd]);
-	if (total_buffer[fd] == NULL)
-	{
+	total_buffer = ft_fill_buffer(fd, total_buffer);
+	if (total_buffer == NULL)
 		return (NULL);
-	}
 	current_line = NULL;
-	current_line = ft_get_current_line(total_buffer[fd]);
-	total_buffer[fd] = ft_get_buffer_rest(total_buffer[fd]);
+	current_line = ft_get_current_line(total_buffer);
+	total_buffer = ft_get_buffer_rest(total_buffer);
 	return (current_line);
 }
 
