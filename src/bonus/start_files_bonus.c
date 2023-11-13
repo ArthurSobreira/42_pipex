@@ -6,11 +6,11 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:39:24 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 15:52:03 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:42:17 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	start_io_files(t_pipex *pipex, char *argv[])
 {
@@ -64,6 +64,6 @@ void	start_output_file(t_pipex *pipex, char *out_file)
 		pipex->fd_output_file = open(out_file, O_WRONLY | \
 								O_CREAT | O_TRUNC, 0644);
 		if (pipex->fd_output_file < 0)
-			handle_file_error(3);	
+			handle_file_error(3);
 	}
 }
