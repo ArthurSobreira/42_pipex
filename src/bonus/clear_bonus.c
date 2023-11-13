@@ -6,14 +6,15 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:28:20 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/12 11:35:09 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:31:07 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 void	clear_all(t_pipex *pipex, short exit_code)
 {
+	close(STDIN_FILENO);
 	close(pipex->fd_input_file);
 	close(pipex->fd_output_file);
 	free(pipex->commands_array);
@@ -32,6 +33,8 @@ void	clear_invalid_command(t_pipex *pipex, size_t cmd_pos)
 			free_split(pipex->commands_array[cmd_pos].argv);
 		cmd_pos++;
 	}
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 	clear_all(pipex, CMD_NOT_FOUND);
 }
 
