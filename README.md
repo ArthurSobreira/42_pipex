@@ -31,7 +31,7 @@ $> make / make bonus
 
 <br>
 
-## Mandatory
+## Mandatory Part
 
 * To run the mandatory part of the program, just have access to an <strong>input file</strong> (the <strong>output file</strong> is not necessary,
   if one does not exist, the program will create it) and execute the following commands:
@@ -46,7 +46,7 @@ $> < infile first_cmd | second_cmd > outfile
 
 <br>
 
-## Bonus
+## Bonus Part
 
 * To run the bonus part of the program, in which it is possible to execute an indefinite number of pipes, as well as the mandatory part, just have
   access to an <strong>input file</strong> and execute the following commands:
