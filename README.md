@@ -37,9 +37,24 @@ $> make / make bonus
   if one does not exist, the program will create it) and execute the following commands:
 
 ```bash
-$> ./pipex input_file first_cmd second_cmd2 output_file
+$> ./pipex infile first_cmd second_cmd outfile
 
 # Should behave like:
 
-$> < input_file first_cmd | second_cmd2 > output_file
+$> < infile first_cmd | second_cmd > outfile
+```
+
+<br>
+
+## Bonus
+
+* To run the bonus part of the program, in which it is possible to execute an indefinite number of pipes, as well as the mandatory part, just have
+  access to an <strong>input file</strong> and execute the following commands:
+
+```bash
+$> ./pipex_bonus infile first_cmd second_cmd ... nth_cmd outfile
+
+# Should behave like:
+
+$> < infile first_cmd | second_cmd | ... | nth_cmd > outfile
 ```
