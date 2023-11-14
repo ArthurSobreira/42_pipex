@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:01:30 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/13 12:24:06 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:35:14 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 # define SPACE 32
 # define TWO_POINTS 58
 
-typedef enum e_proc
-{
-	INITIAL,
-	FINAL,
-}		t_proc;
-
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }		t_bool;
+
+typedef enum e_proc
+{
+	INITIAL,
+	FINAL,
+}		t_proc;
 
 typedef struct s_cmd
 {
