@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:33:22 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/13 12:24:42 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/14 10:34:47 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@
 # define TWO_POINTS 58
 # define CLEAR_STATIC -1
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE,
+}		t_bool;
+
 typedef enum e_proc
 {
 	INITIAL,
 	INTERMEDIATE,
 	FINAL,
 }		t_proc;
-
-typedef enum e_bool
-{
-	FALSE,
-	TRUE,
-}		t_bool;
 
 typedef struct s_cmd
 {
