@@ -58,3 +58,12 @@ $> ./pipex_bonus infile first_cmd second_cmd ... nth_cmd outfile
 
 $> < infile first_cmd | second_cmd | ... | nth_cmd > outfile
 ```
+* The bonus also allows the use of <strong><< >></strong> operators when the first parameter is <strong>'here_doc'</strong>:
+
+```bash
+$> ./pipex_bonus here_doc LIMITER first_cmd second_cmd ... nth_cmd outfile
+
+# Should behave like:
+
+$> first_cmd < < LIMITER | second_cmd | ... | nth_cmd > > outfile
+```
