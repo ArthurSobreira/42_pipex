@@ -8,6 +8,7 @@
 
 ## Summary
 
-> <i>The fifth project in the 42sp fundamentals track, <strong>Fdf</strong>, is also the first graphical project in the fundamentals track, </i>
-> <i>which uses a simple graphics library called <strong>MinilibX</strong>. The project is based on the creation of a program that receives </i>
-> <i>as a parameter a path to a map (any valid map with '.fdf' extension) and displays it in a Three-Dimensional Representation of Relief Landscapes. </i>
+> <i>The sixth project in the 42sp fundamentals track, <strong>Pipex</strong>, is based on the creation of a program</i>
+> <i>that imitates the shell operator <strong>Pipe</strong>, which takes the return from one command and passes it to the input of another.</i>
+> <i>The main objective of this project is to introduce the use of <strong>multiple processes with forks</strong>, </i>
+> <i><strong>file descriptor redirection</strong>, <strong>execve</strong> and more.</i>
