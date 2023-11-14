@@ -6,19 +6,13 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:08:19 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/13 12:31:41 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:09:22 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-static void	start_pipex(t_pipex *pipex, int argc)
-{
-	pipex->commands = argc - 3;
-	pipex->cmd_index = 2;
-	pipex->success = TRUE;
-	pipex->has_heredoc = FALSE;
-}
+static void	start_pipex(t_pipex *pipex, int argc);
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -39,4 +33,12 @@ int	main(int argc, char *argv[], char *envp[])
 		clear_all(&pipex, -1);
 	}
 	return (0);
+}
+
+static void	start_pipex(t_pipex *pipex, int argc)
+{
+	pipex->commands = argc - 3;
+	pipex->cmd_index = 2;
+	pipex->success = TRUE;
+	pipex->has_heredoc = FALSE;
 }
