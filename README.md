@@ -65,5 +65,5 @@ $> ./pipex_bonus here_doc LIMITER first_cmd second_cmd ... nth_cmd outfile
 
 # Should behave like:
 
-$> first_cmd < < LIMITER | second_cmd | ... | nth_cmd > > outfile
+$> first_cmd << LIMITER | second_cmd | ... | nth_cmd >> outfile
 ```
