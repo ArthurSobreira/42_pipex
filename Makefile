@@ -14,7 +14,7 @@ CYAN = "\033[36;1;3;208m"
 WHITE = "\033[37;1;4m"
 COLOR_LIMITER = "\033[0m"
 
-# Paths for Utils
+# Paths Definitions
 HEADER_PATH = ./includes
 BIN_PATH = ./bin/
 MANDATORY_SOURCES_PATH = ./src/mandatory/
