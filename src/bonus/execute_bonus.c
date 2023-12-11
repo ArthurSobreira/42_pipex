@@ -6,7 +6,7 @@
 /*   By: arsobrei <arsobrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:01:15 by arsobrei          #+#    #+#             */
-/*   Updated: 2023/11/13 12:38:16 by arsobrei         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:55:47 by arsobrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	execute_commands(t_pipex *pipex)
 			dup2(pipex->fd_pipe[0], STDIN_FILENO);
 			close(pipex->fd_pipe[0]);
 			close(pipex->fd_pipe[1]);
-			waitpid(pipex->commands_array[index].pid, NULL, 0);
+			waitpid(pipex->commands_array[index].pid, NULL, WNOHANG);
 		}
 		free(pipex->commands_array[index].cmd);
 		if (pipex->commands_array[index].argv)
